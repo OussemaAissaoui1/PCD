@@ -313,18 +313,18 @@ router.post('/vendor-keys', async (req, res) => {
       return res.status(400).json({ error: 'An array of vendor emails is required.' });
     }
 
-    // Find vendors matching the provided emails
+  
     const vendors = await User.find(
       { 
         email: { $in: emails }, 
-        role: 'vendor' // Ensure we only get vendors
+        role: 'vendor'
       },
-      'email cryptoKey' // Select only email and cryptoKey fields
+      'email cryptoKey' 
     );
 
-    // Create a map of email -> cryptoKey
+   
     const vendorKeyMap = vendors.reduce((map, vendor) => {
-      if (vendor.email && vendor.cryptoKey) { // Only include if key exists
+      if (vendor.email && vendor.cryptoKey) { 
         map[vendor.email] = vendor.cryptoKey;
       }
       return map;
@@ -338,9 +338,8 @@ router.post('/vendor-keys', async (req, res) => {
   }
 });
 
-// Export the router as the default export
 module.exports = router;
-// Attach User and Order models to the router for use in other files
+
 router.User = User;
 router.Order = Order;
 
