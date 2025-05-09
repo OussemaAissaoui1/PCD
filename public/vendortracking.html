@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" href="img/favicon.png" type="image/png" />
+    <title>Vendor Dashboard - Ensi B ecommerce</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="vendors/linericon/style.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/themify-icons.css" />
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="vendors/lightbox/simpleLightbox.css" />
+    <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
+    <link rel="stylesheet" href="vendors/animate-css/animate.css" />
+    <link rel="stylesheet" href="vendors/jquery-ui/jquery-ui.css" />
+    <!-- main css -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <style>
+      .vendor-dashboard {
+        padding: 40px 0;
+      }
+      .product-card {
+        margin-bottom: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .product-img {
+        height: 200px;
+        overflow: hidden;
+      }
+      .product-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s;
+      }
+      .product-details {
+        padding: 15px;
+      }
+      .product-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+      }
+      .order-item {
+        margin-bottom: 15px;
+        padding: 15px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+      }
+      .order-header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
+      .order-products {
+        margin-bottom: 10px;
+      }
+      .order-customer {
+        background: #f9f9f9;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+      .section-title {
+        font-size: 24px;
+        font-weight: 600;
+        margin: 30px 0;
+        border-bottom: 2px solid #f8b600;
+        padding-bottom: 10px;
+        display: inline-block;
+      }
+      .edit-price-form {
+        display: none;
+        margin-top: 10px;
+      }
+      .tab-content {
+        padding: 20px 0;
+      }
+      .product-img img {
+        min-height: 200px;
+        background-color: #f8f9fa;
+        object-fit: cover;
+      }
+      #loadingIndicator {
+        text-align: center;
+        padding: 20px;
+        display: none;
+      }
+      .spinner {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid #f8b600;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      /* Order Status Styles */
+      .status-control {
+        min-width: 120px;
+      }
+      
+      .status-select {
+        font-size: 14px;
+      }
+      
+      .update-status-btn {
+        width: 100%;
+        margin-top: 5px;
+      }
+      
+      .badge {
+        font-size: 85%;
+        padding: 5px 10px;
+      }
+      
+      .badge-pending {
+        background-color: #ffc107;
+        color: #000;
+      }
+      
+      .badge-shipped {
+        background-color: #17a2b8;
+        color: #fff;
+      }
+      
+      .badge-delivered {
+        background-color: #28a745;
+        color: #fff;
+      }
+    </style>
+    <!-- Inside the head section, add this meta tag to help with relative URLs -->
+    <base href="/">
+  </head>
+
+  <body>
+    <!--================Header Menu Area =================-->
+    <header class="header_area">
+      <div class="top_menu">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7">
+              <div class="float-left">
+                <p>Phone: +01 256 25 235</p>
+                <p>email: ensi@ensi.com</p>
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <div class="float-right">
+                <ul class="right_side">
+                  <li>
+                    <a href="cart.html">
+                      gift card
+                    </a>
+                  </li>
+                  <li>
+                    <a href="tracking.html">
+                      track order
+                    </a>
+                  </li>
+                  <li>
+                    <a href="contact.html">
+                      Contact Us
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main_menu">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light w-100">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a class="navbar-brand logo_h" href="index.html">
+              <img src="img/logo.png" alt="" />
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div
+              class="collapse navbar-collapse offset w-100"
+              id="navbarSupportedContent"
+            >
+              <div class="row w-100 mr-0">
+                <div class="col-lg-8 pr-0"> 
+                  <ul class="nav navbar-nav center_nav pull-right">
+                    <li class="nav-item">
+                      <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item submenu dropdown">
+                      <a
+                        href="#"
+                        class="nav-link dropdown-toggle"
+                        data-toggle="dropdown"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        >Shop</a
+                      >
+                      <ul class="dropdown-menu">
+                        <li class="nav-item">
+                          <a class="nav-link" href="category.html"
+                            >Shop Category</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="single-product.html"
+                            >Product Details</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="checkout.html"
+                            >Product Checkout</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="cart.html">Shopping Cart</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="nav-item submenu dropdown">
+                      <a
+                        href="#"
+                        class="nav-link dropdown-toggle"
+                        data-toggle="dropdown"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        >Pages</a
+                      >
+                      <ul class="dropdown-menu">
+                        <li class="nav-item">
+                          <a class="nav-link" href="tracking.html">Tracking</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item" id="addProductNav">
+                      <a class="nav-link" href="vendor product.html">Add Product</a>
+                    </li>
+                    <li class="nav-item active" id="vendorOrdersNav">
+                      <a class="nav-link" href="vendortracking.html">Orders</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="col-lg-4 pr-0"> <!-- Changed from col-lg-5 -->
+                  <ul class="nav navbar-nav navbar-right right_nav pull-right">
+                    <li class="nav-item">
+                      <a href="#" class="icons">
+                        <i class="ti-search" aria-hidden="true"></i>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="cart.html" class="icons">
+                        <i class="ti-shopping-cart"></i>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="#" class="icons" id="loginIcon" data-toggle="modal" data-target="#loginModal">
+                        <i class="ti-user" aria-hidden="true"></i>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="#" class="icons" id="profileIcon" style="display: none;">
+                        <img id="profilePicture" src="" alt="User" style="width: 30px; height: 30px; border-radius: 50%; cursor: pointer;">
+                      </a>
+                      <ul id="logoutMenu" style="display: none; position: absolute; background: white; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                        <li><a href="#" id="logoutButton" class="nav-link">Logout</a></li>
+                      </ul>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="#" class="icons">
+                        <i class="ti-heart" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!--================Header Menu Area =================-->
+    <!-- Login/Signup Modals -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body position-relative">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: absolute; right: 15px; top: 15px;">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="myform">
+              <h1 class="text-center">Login Form</h1>
+              <form id="signinForm" action="/api/user/signin" method="POST">
+                <div class="form-group mt-4">
+                  <label for="emailInput" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="emailInput" placeholder="Enter email" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="passwordInput" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="passwordInput" placeholder="Password" name="password" required />
+                </div>
+                <button type="submit" class="btn btn-light btn-block">LOGIN</button>
+                <p>Not a member? <a href="#" data-toggle="modal" data-target="#signupModal">Signup now</a></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body position-relative">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: absolute; right: 15px; top: 15px;">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <form class="myform p-4" action="/api/user/signup" method="POST" enctype="multipart/form-data">
+              <h1 class="text-center mb-4">Signup Form</h1>
+              <!-- Form content same as in index.html -->
+              <!-- Full Name -->
+              <div class="form-group">
+                <label for="signupName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="signupName" name="name" required>
+              </div>
+              <!-- Email -->
+              <div class="form-group mt-3">
+                <label for="signupEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="signupEmail" name="email" required>
+              </div>
+              <!-- Password -->
+              <div class="form-group mt-3">
+                <label for="signupPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signupPassword" name="password" required>
+              </div>
+              <!-- Confirm Password -->
+              <div class="form-group mt-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+              </div>
+              <!-- Role Selector -->
+              <div class="form-group mt-4">
+                <label class="form-label">Select Role:</label><br>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="role" id="roleClient" value="client" checked>
+                  <label class="form-check-label" for="roleClient">Client</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="role" id="roleVendor" value="vendor">
+                  <label class="form-check-label" for="roleVendor">Vendor</label>
+                </div>
+              </div>
+              <!-- Vendor Photo Upload -->
+              <div class="form-group mt-3">
+                <label for="vendorPhoto" class="form-label">Upload your profile picture</label>
+                <input type="file" class="form-control-file" id="vendorPhoto" name="profilePicture" accept="image/*">
+              </div>
+              <!-- Vendor-only Crypto Key -->
+              <div class="form-group mt-3">
+                <label for="cryptoKey" class="form-label">Crypto Public Key</label>
+                <input type="text" class="form-control" id="cryptoKey" name="cryptoKey" placeholder="Enter your wallet public key">
+              </div>
+            
+              <!-- Submit -->
+              <button type="submit" class="btn btn-light btn-block mt-4 py-2">SIGN UP</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="banner_area">
+      <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+          <div class="banner_content d-md-flex justify-content-between align-items-center">
+            <div class="mb-3 mb-md-0">
+              <h2>Vendor Dashboard</h2>
+              <p>Manage your products and orders</p>
+            </div>
+            <div class="page_link">
+              <a href="index.html">Home</a>
+              <a href="vendortracking.html">Vendor Dashboard</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="vendor-dashboard">
+      <div class="container">
+        <div class="vendor-info mb-4">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title" id="vendorName">Vendor Name</h4>
+                  <p class="card-text" id="vendorEmail">vendor@email.com</p>
+                  <p class="card-text">Crypto Key: <span id="vendorCryptoKey">0x123456789...</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-6">
+                      <h5>Total Products</h5>
+                      <h2 id="totalProducts">0</h2>
+                    </div>
+                    <div class="col-6">
+                      <h5>Total Orders</h5>
+                      <h2 id="totalOrders">0</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ul class="nav nav-tabs" id="vendorTabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="products-tab" data-toggle="tab" href="#products" role="tab">My Products</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="vendorTabsContent">
+          <!-- Products Tab -->
+          <div class="tab-pane fade show active" id="products" role="tabpanel">
+            <h3 class="section-title">My Products</h3>
+      
+            <!-- Add loading indicator -->
+            <div id="loadingIndicator" style="text-align: center; padding: 20px;">
+              <div class="spinner" style="display: inline-block; width: 40px; height: 40px; border: 4px solid rgba(0, 0, 0, 0.1); border-radius: 50%; border-top: 4px solid #f8b600; animation: spin 1s linear infinite;"></div>
+              <p>Loading your products...</p>
+            </div>
+            <div class="row" id="vendorProducts">
+              <!-- Product cards will be dynamically added here -->
+            </div>
+            
+            <div class="col-md-12 text-center" id="noProductsMessage">
+                <p>No products found. <a href="vendor product.html">Add your first product</a>.</p>
+            </div>
+          </div>
+    </section>
+    <!--================Order Details Area =================-->
+    <section class="order_details_area section_gap">
+        <div class="container">
+            <h3 class="title_confirmation">Your Orders</h3>
+            <p>Here you can view the orders containing your products.</p>
+            
+            <div class="row order_d_inner">
+                 <div class="col-lg-12">
+                     <div id="loading-indicator" class="text-center py-5" style="display: none;">
+                         <div class="spinner-border text-primary" role="status">
+                             <span class="sr-only">Loading...</span>
+                         </div>
+                         <p>Loading your orders...</p>
+                     </div>
+                     <div id="vendor-orders-list" class="table-responsive">
+                      
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Order Details Area =================-->
+
+    <!-- Product Template (Hidden) -->
+    <template id="productTemplate">
+      <div class="col-lg-4 col-md-6">
+        <div class="product-card">
+          <div class="product-img">
+            <img src="" alt="Product">
+          </div>
+          <div class="product-details">
+            <h4 class="product-name"></h4>
+            <div class="d-flex justify-content-between align-items-center">
+              <p class="product-price mb-0">$<span class="price-value"></span></p>
+              <p class="product-category mb-0"></p>
+            </div>
+            <div class="product-actions">
+              <button class="btn btn-sm btn-warning edit-price-btn">Edit Price</button>
+              <button class="btn btn-sm btn-danger remove-product-btn">Remove</button>
+            </div>
+            <div class="edit-price-form">
+              <div class="input-group mt-2">
+                <input type="number" class="form-control form-control-sm new-price-input" placeholder="New Price">
+                <div class="input-group-append">
+                  <button class="btn btn-sm btn-primary save-price-btn">Save</button>
+                  <button class="btn btn-sm btn-secondary cancel-price-btn">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Order Template (Hidden) -->
+    <template id="orderTemplate">
+      <div class="order-item">
+        <div class="order-header">
+          <div>
+            <h5>Order #<span class="order-id"></span></h5>
+            <p class="order-date"></p>
+          </div>
+          <div>
+            <span class="badge badge-primary order-status"></span>
+            <h6 class="order-total"></h6>
+          </div>
+        </div>
+        <div class="order-products">
+          <!-- Product list will be added here -->
+        </div>
+        <div class="order-customer">
+          <h6>Customer Information</h6>
+          <div class="row">
+            <div class="col-md-6">
+              <p><strong>Name:</strong> <span class="customer-name"></span></p>
+              <p><strong>Email:</strong> <span class="customer-email"></span></p>
+              <p><strong>Phone:</strong> <span class="customer-phone"></span></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Address:</strong> <span class="customer-address"></span></p>
+              <p><strong>City:</strong> <span class="customer-city"></span></p>
+              <p><strong>ZIP:</strong> <span class="customer-zip"></span></p>
+            </div>
+          </div>
+          <p><strong>Notes:</strong> <span class="order-notes"></span></p>
+        </div>
+      </div>
+    </template>
+
+    <!-- Order Product Template (Hidden) -->
+    <template id="orderProductTemplate">
+      <div class="order-product-item d-flex justify-content-between align-items-center mb-2">
+        <div>
+          <img src="" alt="Product" width="50" height="50" class="mr-2">
+          <strong class="order-product-name"></strong>
+        </div>
+        <div class="text-right">
+          <span class="order-product-quantity"></span> x 
+          $<span class="order-product-price"></span>
+        </div>
+      </div>
+    </template>
+
+    <!--================ start footer Area  =================-->
+    <footer class="footer-area section_gap">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2 col-md-6 single-footer-widget">
+            <h4>Top Products</h4>
+            <ul>
+              <li><a href="#">Managed Website</a></li>
+              <li><a href="#">Manage Reputation</a></li>
+              <li><a href="#">Power Tools</a></li>
+              <li><a href="#">Marketing Service</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 single-footer-widget">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#">Jobs</a></li>
+              <li><a href="#">Brand Assets</a></li>
+              <li><a href="#">Investor Relations</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 single-footer-widget">
+            <h4>Features</h4>
+            <ul>
+              <li><a href="#">Jobs</a></li>
+              <li><a href="#">Brand Assets</a></li>
+              <li><a href="#">Investor Relations</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 single-footer-widget">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">Guides</a></li>
+              <li><a href="#">Research</a></li>
+              <li><a href="#">Experts</a></li>
+              <li><a href="#">Agencies</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6 single-footer-widget">
+            <h4>Newsletter</h4>
+            <p>You can trust us. we only send promo offers,</p>
+            <div class="form-wrap" id="mc_embed_signup">
+              <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                method="get" class="form-inline">
+                <input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''"
+                  onblur="this.placeholder = 'Your Email Address '" required="" type="email">
+                <button class="click-btn btn btn-default">Subscribe</button>
+                <div style="position: absolute; left: -5000px;">
+                  <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                </div>
+  
+                <div class="info"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom row align-items-center">
+          <p class="footer-text m-0 col-lg-8 col-md-12">
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+          </p>
+          <div class="col-lg-4 col-md-12 footer-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-behance"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--================ End footer Area  =================-->
+
+    <!-- JavaScript -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/stellar.js"></script>
+    <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+    <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="vendors/isotope/isotope-min.js"></script>
+    <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="vendors/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendors/counter-up/jquery.counterup.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/modal-handler.js"></script>
+    <script src="js/api-proxy.js"></script>
+    <script src="js/vendor-tracking.js"></script>
+  </body>
+</html>

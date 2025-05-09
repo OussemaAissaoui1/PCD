@@ -1,0 +1,175 @@
+/* Custom styles for cart and checkout pages */
+
+/* Cart item styling */
+.cart-item {
+    transition: background-color 0.3s ease;
+}
+
+.cart-item:hover {
+    background-color: #f9f9f9;
+}
+
+.cart-item .media {
+    align-items: center;
+}
+
+.cart-item .media img {
+    object-fit: cover;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.cart-item .media img:hover {
+    transform: scale(1.05);
+}
+
+/* Quantity buttons styling */
+.product_count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-btn {
+    border: none;
+    background: #f8f9fa;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #384aeb;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background-color: #384aeb;
+    color: white;
+}
+
+.input-text.qty {
+    width: 45px;
+    text-align: center;
+    margin: 0 8px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+/* Cart buttons - use the existing main_btn style with some spacing */
+.main_btn {
+    /* The main_btn style is defined in style.css - we're just adding margin/display properties */
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Secondary button styles - use gray_btn */
+.gray_btn {
+    line-height: 38px;
+    background: #f9f9ff;
+    padding: 0px 38px;
+    text-transform: uppercase;
+    color: #222222;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    transition: all 300ms linear 0s;
+    text-decoration: none;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.gray_btn:hover {
+    background: #384aeb;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Disabled button state */
+.main_btn.disabled {
+    background-color: #ccc;
+    color: #666;
+    pointer-events: none;
+    border-color: #ccc;
+}
+
+/* Empty cart styling */
+.empty-cart-container {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.empty-cart-container i {
+    font-size: 60px;
+    color: #ddd;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Checkout page styling */
+.order_box {
+    background: #fff;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.05);
+}
+
+.order_box h2 {
+    border-bottom: 1px solid #dddddd;
+    font-size: 18px;
+    font-weight: 500;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    color: #2a2a2a;
+}
+
+.order_box .list li a {
+    font-size: 14px;
+    color: #797979;
+    border-bottom: 1px solid #eeeeee;
+    display: flex;
+    padding: 10px 0;
+    justify-content: space-between;
+}
+
+.order_box .list li a .middle {
+    width: 50px;
+    text-align: right;
+    color: #2a2a2a;
+    margin: 0 15px;
+}
+
+.order_box .list_2 li a {
+    text-transform: uppercase;
+    color: #2a2a2a;
+    font-weight: 500;
+}
+
+.order_box .list_2 li a span {
+    color: #797979;
+    text-transform: capitalize;
+}
+
+.order_box .list_2 li:last-child a span {
+    color: #2a2a2a;
+    font-weight: bold;
+}
+
+/* Remove button styling */
+.remove-item {
+    background: transparent;
+    color: #ff6c00;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.remove-item:hover {
+    transform: scale(1.2);
+    color: #ff3300;
+}
